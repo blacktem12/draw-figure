@@ -8,3 +8,44 @@ html, body {
   width: 100%;
   height: 100%;
 }
+
+.canvas {
+  width: 700px;
+  height: 700px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid #000000;
+  position: absolute;
+
+  .figure-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    .button-area {
+      width: 100%;
+      height: 25px;
+    }
+
+    .figure-area {
+      width: 100%;
+      flex: 1 1 auto;
+      z-index: 0;
+    }
+
+    .rectangle,
+    .circle {
+      position: absolute;
+      border: 1px solid #000000;
+    }
+
+    .circle {
+      border-radius: 50%;
+    }
+  }
+}
