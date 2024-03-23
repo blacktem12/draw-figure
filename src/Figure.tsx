@@ -5,7 +5,7 @@ export default class Figure extends React.Component<FigureProps, FigureState> {
   constructor(props: FigureProps) {
     super(props);
     
-    this.state = { x: this.props.x, y: this.props.y, width: this.props.width, height: this.props.height, zIndex: this.props.zIndex };
+    this.state = { className: this.props.className, x: this.props.x, y: this.props.y, width: this.props.width, height: this.props.height, zIndex: this.props.zIndex };
     this.updateZIndex = this.updateZIndex.bind(this);
     this.updatePosition = this.updatePosition.bind(this);
     this.updateState = this.updateState.bind(this);
@@ -14,7 +14,7 @@ export default class Figure extends React.Component<FigureProps, FigureState> {
   backgroundColorItems: Array<string> = ['#00a2e8', '#008728', '#ff7f27', '#880015'];
   backgroundColor: string = this.backgroundColorItems[Math.floor(Math.random() * 4)];
 
-  updateZIndex(direction: 'up'|'down'): void {
+  updateZIndex(direction: 'up'|'down', callback: Function): void {
     this.setState((state: FigureState) => {
       if (direction == 'up') {
         state.zIndex++;
@@ -24,6 +24,8 @@ export default class Figure extends React.Component<FigureProps, FigureState> {
         }
       }
 
+      callback();
+
       return state;
     });
   }
@@ -32,6 +34,14 @@ export default class Figure extends React.Component<FigureProps, FigureState> {
     this.setState((state: FigureState) => {
       state.x = x;
       state.y = y;
+
+      return state;
+    });
+  }
+
+  updateClassName(name: 'circle'|'rectangle'|'circle selected'|'rectangle selected') {
+    this.setState((state: FigureState) => {
+      state.className = name;
 
       return state;
     });
@@ -52,7 +62,7 @@ export default class Figure extends React.Component<FigureProps, FigureState> {
     return (
       <div
         id={this.props.id.toString()}
-        className={this.props.className}
+        className={this.state.className}
         onMouseDown={(e: React.MouseEvent) => this.props.onMouseDown(e, this)}
         style=
         {

@@ -42,6 +42,10 @@ html, body {
     .circle {
       position: absolute;
       border: 1px solid #000000;
+
+      &.selected {
+        outline: 5px solid #ff0000;
+      }
     }
 
     .circle {
