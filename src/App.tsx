@@ -121,7 +121,8 @@ export default class App extends React.Component<{}, AppState> {
     // Mouse click한 영역에 다른 element가 없는 경우 figure를 생성한다.
     if (this.isDraw) {
       this.drawFigure(currentXPosition, currentYPosition);
-    } else if (this.selectedFigure != null && this.keepClicked) { // Mouse click시 해당 영역에 figure가 존재하면 해당 element의 좌표를 조정한다.
+    } else if (this.selectedFigure != null && this.keepClicked) {
+      // Mouse click시 해당 영역에 figure가 존재하면 해당 element의 좌표를 조정한다.
       this.moveFigure(currentTarget, currentXPosition, currentYPosition);
     }
   }
@@ -191,7 +192,6 @@ export default class App extends React.Component<{}, AppState> {
 
   changeIndexButtonOnClick(isIncrease?: boolean): void {
     if (this.selectedFigure) {
-      // const selectedItem = this.addedItems.find((item: AddedFigureItem): boolean => item.id == this.selectedFigure!.props.id) as AddedFigureItem;
       const callback = () => {
         const selectedItem = this.addedItems.find((item: AddedFigureItem): boolean => item.id == this.selectedFigure!.props.id) as AddedFigureItem;
 
